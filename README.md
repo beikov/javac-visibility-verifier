@@ -1,5 +1,14 @@
 # Reproducer for Javac issue emitting wrong invoke bytecode
 
+## How to run
+
+```shell
+./mvnw clean package
+java -jar target/javac-visibility-bug-1.0-SNAPSHOT.jar
+```
+
+## Details
+
 Javac gets confused when compiling `b.a()` in the constructor `pkg2.Impl(pkg2.AbstractBase)`.
 It emits `invokevirtual pkg2/AbstractBase.a:()Ljava/lang/String` 
 instead of `invokeinterface pkg2/BaseInterface.a:()Ljava/lang/String`.
